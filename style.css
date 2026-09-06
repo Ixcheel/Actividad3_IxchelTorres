@@ -1,6 +1,7 @@
 /*El archivo CSS se generó con la ayuda de Gemini, aunque se realizaron modificaciones personales*/
 
 /*General*/
+/*Se aplica a todo y elimina los márgenes, el box-sizing hace que el margin y padding se incluyan en el ancho y alto establecidos*/
 * {
     margin: 0;
     padding: 0;
@@ -13,6 +14,8 @@ html {
     overflow-x: hidden;
 }
 
+/*vh es viewport height, que es la altura visible de la pantalla aquí establecemos la fuente, color que utiliza la página*/
+/*line-height aumenta el espacio vertical entre líneas de texto*/
 body {
     width: 100%;
     min-height: 100vh;
@@ -25,7 +28,7 @@ body {
 
 
 /* Header*/
-
+/*Position fixed hace que los elementos se queden en la parte superior mientras se hace scroll*/
 header {
     width: 100%;
     min-height: 85px;
@@ -35,7 +38,7 @@ header {
     padding: 10px 7%;
     background-color: rgba(5, 5, 5, 0.97);
     border-bottom: 1px solid #555;
-    position: sticky;
+    position: fixed;
     top: 0;
     z-index: 1000;
     box-shadow: 0 4px 20px rgba(255,255,255,0.05);
@@ -48,20 +51,20 @@ header img {
     object-fit: contain;
     transition: 0.4s;
 }
-
+/*Gira un poquito cuando le pasas el cursor encima*/
 header img:hover {
     transform: rotate(10deg) scale(1.08);
 }
 
 
 /* Navigation */
-
+/*Estilo para la lista no ordenada del nav*/
 nav ul {
     list-style: none;
     display: flex;
     gap: 30px;
 }
-
+/*Estilo para las referencias del nav*/
 nav a {
     color: #dcdcdc;
     text-decoration: none;
@@ -72,6 +75,7 @@ nav a {
     transition: 0.3s;
 }
 
+/*Crea la línea que aparece debajo cuando le pasas el cursor*/
 nav a::after {
     content: "";
     position: absolute;
@@ -82,6 +86,7 @@ nav a::after {
     background-color: white;
     transition: 0.3s;
 }
+
 
 nav a:hover {
     color: white;
@@ -105,7 +110,6 @@ nav a:hover::after {
 
 
 /*Utilizando grid, acomodamos las sections*/
-
 #main {
     grid-column: 1 / -1;
 }
@@ -141,8 +145,8 @@ aside {
 }
 
 /* Decoración */
-.contenedor > section::before,
-.contenedor > section::after,
+.contenedor > section::before, /*Antes del contenido de cada section*/
+.contenedor > section::after, /*Después del contenido de cada section*/
 aside::before,
 aside::after {
     position: absolute;
@@ -206,7 +210,7 @@ i {
 
 
 /*Acerca de mí*/
-
+/*Cada section tiene su estilo de altura, posición, alineamiento del texto y las imágenes*/
 #main article {
     max-width: 1000px;
     margin: auto;
@@ -234,7 +238,7 @@ i {
 
 
 /* Recomendación del mes*/
-
+/*Creamos dos columnas: minmax ocupa todo el espacio disponible, mientras que la otra es de 260 píxeles*/
 #description article {
     display: grid;
     grid-template-columns: minmax(0, 1fr) 260px;
@@ -242,10 +246,12 @@ i {
     align-items: start;
 }
 
+/*Todo el contenido excepto la imagen a la izquierda*/
 #description article > *:not(img) {
     grid-column: 1;
 }
 
+/*La imagen va en la segunda columna a la derecha, definimos su ancho. Max-width ayuda a que la imagen no se más grande que el espacio disponible*/
 #description article img {
     grid-column: 2;
     grid-row: 1 / span 10;
@@ -261,11 +267,13 @@ i {
     transition: 0.5s;
 }
 
+/*Efecto de hover, se hace más grande y aumenta el brillo de la sombra*/
 #description article img:hover {
     transform: scale(1.04);
     box-shadow: 0 0 30px rgba(255,255,255,0.15);
 }
 
+/*Estilo del h1 de description*/
 #description h1 {
     margin-top: 0;
     text-align: left;
@@ -273,14 +281,14 @@ i {
     padding-bottom: 10px;
 }
 
+/*Modifica solo el primer h2 de description*/
 #description h2:first-of-type {
     font-style: italic;
     font-size: 1.6rem;
 }
 
 
-/* Info */
-
+/* Estilo de h2 y p Info */
 #info {
     text-align: center;
     border-left: 2px solid #666;
@@ -300,7 +308,7 @@ i {
 
 
 /* Aside con los links */
-
+/*Definimos la altura y ancho*/
 aside {
     height: 100%;
     min-width: 0;
@@ -324,12 +332,14 @@ aside a {
     transition: 0.3s;
 }
 
+/*Al pasar el mouse el borde inferior y el texto se ponen de blanco*/
 aside a:hover {
     color: white;
     border-bottom-color: white;
     padding-left: 15px;
 }
 
+/*Imagen dentro del aside para que no se salga de los límites*/
 aside img {
     display: block;
     width: 100%;
@@ -343,7 +353,8 @@ aside img {
 }
 
 /* Personajes principales */
-
+/*Cada personaje esta en su propia columna, son 3 columnas del mismo tamaño
+    min-width:0 ayuda a que el elemento se reduzca si no hay espacio*/
 #personajes {
     display: grid;
     grid-template-columns: repeat(3, minmax(0, 1fr));
@@ -351,12 +362,12 @@ aside img {
     width: 100%;
     min-width: 0;
     padding: 35px;
-    background-color: transparent;
     border: 1px solid #444;
     box-shadow: none;
 }
 
 #personajes > h2 {
+    /*El título puede ocupar las tres columnas*/
     grid-column: 1 / -1;
     text-align: center;
     margin-top: 0;
@@ -366,6 +377,8 @@ aside img {
     padding-bottom: 12px;
 }
 
+/*Cada section es un recuadro de personaje*/
+/*max-width hace que el recuadro no se más ancho que el espacio disponible*/
 #personajes section {
     width: 100%;
     min-width: 0;
@@ -373,12 +386,13 @@ aside img {
     padding: 25px 20px;
     background-color: rgba(15, 15, 15, 0.98);
     border: 1px solid #555;
-    position: relative;
+    position: relative; /*Before y after lo toman como referencia para poner las estrellas*/
     text-align: center;
     overflow: hidden;
     transition: 0.4s;
 }
 
+/*Estrella en la esquina superior*/
 #personajes section::before {
     content: "✧";
     position: absolute;
@@ -387,6 +401,7 @@ aside img {
     color: #777;
 }
 
+/*Estrella en la esquina inferior*/
 #personajes section::after {
     content: "✦";
     position: absolute;
@@ -395,6 +410,7 @@ aside img {
     color: #777;
 }
 
+/*Cuando pasas el mouse el cuadro sube 5 píxeles y se agrega sombra al recuadro*/
 #personajes section:hover {
     transform: translateY(-5px);
     border-color: #888;
@@ -406,7 +422,7 @@ aside img {
     margin-top: 5px;
     margin-bottom: 15px;
     white-space: normal;
-    overflow-wrap: break-word;
+    overflow-wrap: break-word; /*Ayuda a evitar que un texto muy largo rompa el diseño*/
 }
 
 #personajes p {
@@ -424,7 +440,7 @@ aside img {
     width: 100%;
     max-width: 220px;
     height: 280px;
-    object-fit: contain;
+    object-fit: contain; /*Se adjusta al espacio dentro de 220px x 280px*/
     margin: 20px auto;
     padding: 5px;
     border: none;
@@ -432,14 +448,13 @@ aside img {
     transition: 0.5s;
 }
 
+/*Al pasar el mouse la imagen aumenta un 3%*/
 #personajes section:hover img {
-    filter: grayscale(0%);
     transform: scale(1.03);
 }
 
 
-/*Formulario*/
-
+/*Diseño general del formulario*/
 .form {
     width: 90%;
     max-width: 900px;
@@ -456,17 +471,20 @@ aside img {
     margin-bottom: 30px;
 }
 
+/*Lo convertimos en Flexbox para organizar los elementos*/
 form {
     display: flex;
     flex-direction: column;
 }
 
+/*Le ponemos diseño a los label*/
 label {
     color: #ddd;
     margin-bottom: 5px;
     letter-spacing: 1px;
 }
 
+/*Decoramos el input de la información*/
 input,
 textarea {
     width: 100%;
@@ -480,6 +498,7 @@ textarea {
     transition: 0.3s;
 }
 
+/*Cuando le das click para escribir, se coloca una sombra blanca para recordar que es el cuadro de texto seleccionado*/
 input:focus,
 textarea:focus {
     border-color: #aaa;
@@ -488,9 +507,10 @@ textarea:focus {
 
 textarea {
     min-height: 150px;
-    resize: vertical;
+    resize: vertical; /*Solo se puede cambiar el tamaño verticalmente*/
 }
 
+/*Botón de enviar*/
 button {
     align-self: center;
     background-color: transparent;
@@ -504,6 +524,8 @@ button {
     transition: 0.4s;
 }
 
+
+/*Cuando le pasas el mouse, el botón pasa a ser blanco con las letras negras*/
 button:hover {
     background-color: white;
     color: black;
@@ -512,8 +534,7 @@ button:hover {
 }
 
 
-/* Footer */
-
+/* Estilo del footer */
 footer {
     width: 100%;
     margin-top: 70px;
@@ -528,7 +549,6 @@ footer {
 
 
 /* Decoraciones de estrellas */
-
 body::before {
     content: "✶";
     position: fixed;
